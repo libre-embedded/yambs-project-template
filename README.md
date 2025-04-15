@@ -2,15 +2,15 @@
     =====================================
     generator=datazen
     version=3.2.1
-    hash=73658837ec33c8ed1888566d7a9949f7
+    hash=29543ef30ce8febffda8a284e159e7a9
     =====================================
 -->
 
 # yambs-project-template
 
-![Build Status](https://github.com/vkottler/yambs-project-template/actions/workflows/create-project.yml/badge.svg)
+![Build Status](https://github.com/libre-embedded/yambs-project-template/actions/workflows/create-project.yml/badge.svg)
 
-The [yambs](https://github.com/vkottler/yambs) project implements a C/C++
+The [yambs](https://github.com/libre-embedded/yambs) project implements a C/C++
 build-system.
 
 *This is a template intended to be used with
@@ -21,14 +21,14 @@ build-system.
 Invoke `cookiecutter` and fill out information about your project:
 
 ```
-cookiecutter git@github.com:vkottler/yambs-project-template.git
+cookiecutter git@github.com:libre-embedded/yambs-project-template.git
 ```
 
 Example output (interactive):
 
 ```
-name [Vaughn Kottler]: <Your Name>
-email [vaughnkottler@gmail.com]: <your@email.com>
+name [Libre Embedded]: <Your Name>
+email [vaughn@libre-embedded.com]: <your@email.com>
 ...
 ```
 
