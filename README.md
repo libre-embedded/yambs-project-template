@@ -1,8 +1,8 @@
 <!--
     =====================================
     generator=datazen
-    version=3.1.4
-    hash=a525b8130896da2dbb2d08938179573b
+    version=3.2.1
+    hash=73658837ec33c8ed1888566d7a9949f7
     =====================================
 -->
 
@@ -65,6 +65,6 @@ project-name
 │   └── conf.py
 └── yambs.yaml
 
-7 directories, 19 files
+8 directories, 19 files
 
 ```

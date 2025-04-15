@@ -1,7 +1,7 @@
 {
-  "name": "Vaughn Kottler",
-  "email": "vaughnkottler@gmail.com",
-  "username": "vkottler",
+  "name": "Libre Embedded",
+  "email": "vaughn@libre-embedded.com",
+  "username": "libre-embedded",
   "project_name": "project-name",
   "project_slug": "{{cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_')}}",
   "description": "Short project description.",

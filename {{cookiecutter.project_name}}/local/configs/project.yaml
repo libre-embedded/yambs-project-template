@@ -8,6 +8,8 @@ owner: {{cookiecutter.username}}
 embedded: true
 {%- endif %}
 
+main_branch: main
+
 version:
   major: 0
   minor: 1

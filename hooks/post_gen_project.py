@@ -31,9 +31,11 @@ def initialize(ssh_url: bool = False) -> None:
         [
             "submodule",
             "add",
-            "git@github.com:vkottler/config.git"
-            if ssh_url
-            else "https://github.com/vkottler/config.git",
+            (
+                "git@github.com:vkottler/config.git"
+                if ssh_url
+                else "https://github.com/vkottler/config.git"
+            ),
         ]
     )
     git_cmd(["submodule", "update", "--init", "--recursive"])
@@ -64,40 +66,47 @@ def remove_conditionals() -> None:
             path.unlink()
 
 
-initialize()
-datazen()
-remove_conditionals()
-commit()
+def run() -> None:
+    """Perform generation tasks."""
 
-BASE = []
+    initialize()
 
-if IS_EMBEDDED:
-    mk_cmd(["download-toolchains"])
+    datazen()
+    remove_conditionals()
+    commit()
 
-    # Add toolchains to PATH.
-    environ["PATH"] = (
-        str(Path("toolchains", "arm-picolibc-eabi", "bin"))
-        + pathsep
-        + environ["PATH"]
-    )
+    base = []
 
-    BASE.append("variant={{cookiecutter.project_name}}")
+    if IS_EMBEDDED:
+        mk_cmd(["download-toolchains"])
 
-mk_cmd(["g"] + BASE)
-mk_cmd(["gb"] + BASE)
-mk_cmd(["dist", "docs"] + BASE)
+        # Add toolchains to PATH.
+        environ["PATH"] = (
+            str(Path("toolchains", "arm-picolibc-eabi", "bin"))
+            + pathsep
+            + environ["PATH"]
+        )
 
-# Things that run in CI for these projects.
-mk_cmd(["yaml", "python-lint", "python-sa"])
+        base.append("variant={{cookiecutter.project_name}}")
 
-# Run tests.
-if not IS_EMBEDDED:
-    mk_cmd(["t", "variant=clang", "coverage=false"])
-    mk_cmd(["t"])
-else:
-    subprocess.run(["ninja", "format"], check=True)
+    mk_cmd(["g"] + base)
+    mk_cmd(["gb"] + base)
+    mk_cmd(["dist", "docs"] + base)
 
-subprocess.run(["ninja", "all", "format-check"], check=True)
+    # Things that run in CI for these projects.
+    mk_cmd(["yaml", "python-lint", "python-sa"])
 
-if not IS_EMBEDDED:
-    mk_cmd(["t"])
+    # Run tests.
+    if not IS_EMBEDDED:
+        mk_cmd(["t", "variant=clang", "coverage=false"])
+        mk_cmd(["t"])
+    else:
+        subprocess.run(["ninja", "format"], check=True)
+
+    subprocess.run(["ninja", "all", "format-check"], check=True)
+
+    if not IS_EMBEDDED:
+        mk_cmd(["t"])
+
+
+run()
