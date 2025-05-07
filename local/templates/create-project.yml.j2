@@ -1,0 +1,53 @@
+{% import __templates__["yambs_constants"] as constants %}
+---
+name: Create Project
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+
+    runs-on: ${{"{{matrix.system}}"}}
+    strategy:
+      matrix:
+        python-version:
+          - "3.13"
+        system:
+          - ubuntu-24.04
+    env:
+      PYTHON_VERSION: ${{"{{matrix.python-version}}"}}
+
+    steps:
+      - uses: actions/checkout@master
+        with:
+          submodules: recursive
+
+      - uses: seanmiddleditch/gha-setup-ninja@master
+
+      # - name: setup clang {{constants.clang_version}}
+      #   run: |
+      #     wget https://apt.llvm.org/llvm.sh
+      #     chmod +x ./llvm.sh
+      #     sudo ./llvm.sh {{constants.clang_version}}
+      #     rm llvm.sh
+
+      - run: sudo apt-get install gcc{{constants.gcc_suffix}} g++{{constants.gcc_suffix}} lcov clang{{constants.clang_suffix}} clang-format{{constants.clang_suffix}}
+
+      - name: python${{"{{matrix.python-version}}"}} setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{"{{matrix.python-version}}"}}
+
+      - run: pip${{"{{matrix.python-version}}"}} install vmklib>={{constants.min_vmklib}} yambs>={{constants.min_yambs}} ifgen>={{constants.min_ifgen}}
+
+      - run: mk --version
+      - run: mbs --version
+      - run: ig --version
+
+      - run: mk test yaml

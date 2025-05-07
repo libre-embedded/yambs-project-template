@@ -1,6 +1,9 @@
 ---
 default_target: groups-all
 
+params:
+  slug: {{cookiecutter.project_slug}}
+
 includes:
   - config/includes/license.yaml
 {%- if cookiecutter.has_funding|lower == "true" %}
