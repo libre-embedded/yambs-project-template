@@ -14,6 +14,7 @@ compiles:
 
 templates:
   - local/templates
+  - config/python/yambs/templates
 
 commands:
   - name: "tree"
@@ -27,8 +28,16 @@ commands:
       - "project-name"
 
 renders:
-  - name: README.md
+  - name: create-project.yml
+    output_dir: ".github/workflows"
+    dependencies:
+      - compiles-local
+    template_dependencies:
+      - yambs_constants
+
+  - name: local_README.md
     output_dir: "."
+    output_path: README.md
     dependencies:
       - commands-tree
       - compiles-local
@@ -38,4 +47,5 @@ groups:
     dependencies:
       - groups-license
       - groups-funding
-      - renders-README.md
+      - renders-local_README.md
+      - renders-create-project.yml

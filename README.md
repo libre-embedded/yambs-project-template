@@ -1,8 +1,8 @@
 <!--
     =====================================
     generator=datazen
-    version=3.2.1
-    hash=29543ef30ce8febffda8a284e159e7a9
+    version=3.2.3
+    hash=aad42ab71dcdc28c724544fe86bdf52e
     =====================================
 -->
 
@@ -41,6 +41,7 @@ project-name
 ├── build.ninja
 ├── .clang-format
 ├── compile_commands.json
+├── ifgen.yaml
 ├── .isort.cfg
 ├── LICENSE
 ├── local
@@ -57,14 +58,20 @@ project-name
 ├── README.md
 ├── src
 │   ├── apps
+│   │   ├── generated
+│   │   │   └── ifgen
+│   │   │       └── test_common.cc
 │   │   └── test_file.cc
-│   └── example
-│       ├── sample.cc
-│       └── sample.h
+│   ├── example
+│   │   ├── sample.cc
+│   │   └── sample.h
+│   └── generated
+│       └── ifgen
+│           └── common.h
 ├── tasks
 │   └── conf.py
 └── yambs.yaml
 
-8 directories, 19 files
+12 directories, 22 files
 
 ```

@@ -2,6 +2,8 @@
 name: Create Project
 
 on:
+  workflow_dispatch:
+
   push:
     branches: [master]
   pull_request:
@@ -14,7 +16,7 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - "3.12"
+          - "3.13"
         system:
           - ubuntu-24.04
     env:
@@ -26,24 +28,25 @@ jobs:
           submodules: recursive
 
       - uses: seanmiddleditch/gha-setup-ninja@master
-        with:
-          version: 1.11.1
 
-      # - name: setup clang 17
+      # - name: setup clang 19
       #   run: |
       #     wget https://apt.llvm.org/llvm.sh
       #     chmod +x ./llvm.sh
-      #     sudo ./llvm.sh 17
+      #     sudo ./llvm.sh 19
       #     rm llvm.sh
 
-      - run: sudo apt-get install clang-17 clang-format-17
-      - run: sudo apt-get install lcov doxygen gcc-13 g++-13
+      - run: sudo apt-get install gcc-14 g++-14 lcov clang-19 clang-format-19
 
       - name: python${{matrix.python-version}} setup
         uses: actions/setup-python@v2
         with:
           python-version: ${{matrix.python-version}}
 
-      - run: pip${{matrix.python-version}} install vmklib yambs
+      - run: pip${{matrix.python-version}} install vmklib>=2.0.7 yambs>=3.1.0 ifgen>=4.2.5
+
+      - run: mk --version
+      - run: mbs --version
+      - run: ig --version
 
       - run: mk test yaml
