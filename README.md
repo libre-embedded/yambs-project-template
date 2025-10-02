@@ -2,7 +2,7 @@
     =====================================
     generator=datazen
     version=3.2.3
-    hash=aad42ab71dcdc28c724544fe86bdf52e
+    hash=55da3ca12886610c6c3821dfcb094f3a
     =====================================
 -->
 
@@ -66,12 +66,14 @@ project-name
 │   │   ├── sample.cc
 │   │   └── sample.h
 │   └── generated
+│       ├── custom
+│       │   └── struct_receiver.h
 │       └── ifgen
 │           └── common.h
 ├── tasks
 │   └── conf.py
 └── yambs.yaml
 
-12 directories, 22 files
+13 directories, 23 files
 
 ```
