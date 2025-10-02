@@ -1,5 +1,6 @@
 ---
 includes:
-  - config/python/yambs/ifgen.yaml
+  - config/python/ifgen/settings.yaml
+  - package://ifgen/plugins/struct_receiver.yaml
 
-namespace: [Example]
+namespace: [{{cookiecutter.project_slug}}]
