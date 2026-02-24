@@ -36,7 +36,7 @@ jobs:
       #     sudo ./llvm.sh 19
       #     rm llvm.sh
 
-      - run: sudo apt-get install gcc-14 g++-14 lcov clang-19 clang-format-19
+      - run: sudo apt-get install gcc-14 g++-14 lcov clang-19 clang-format-19 doxygen
 
       - name: python${{matrix.python-version}} setup
         uses: actions/setup-python@v2
