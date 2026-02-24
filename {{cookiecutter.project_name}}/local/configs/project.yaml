@@ -8,7 +8,7 @@ owner: {{cookiecutter.username}}
 embedded: true
 {%- endif %}
 
-main_branch: main
+main_branch: master
 
 version:
   major: 0
