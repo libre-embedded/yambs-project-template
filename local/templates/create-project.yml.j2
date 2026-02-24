@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - "3.13"
+          - "3.14"
         system:
           - ubuntu-24.04
     env:
@@ -37,7 +37,7 @@ jobs:
       #     sudo ./llvm.sh {{constants.clang_version}}
       #     rm llvm.sh
 
-      - run: sudo apt-get install gcc{{constants.gcc_suffix}} g++{{constants.gcc_suffix}} lcov clang{{constants.clang_suffix}} clang-format{{constants.clang_suffix}}
+      - run: sudo apt-get install gcc{{constants.gcc_suffix}} g++{{constants.gcc_suffix}} lcov clang{{constants.clang_suffix}} clang-format{{constants.clang_suffix}} doxygen
 
       - name: python${{"{{matrix.python-version}}"}} setup
         uses: actions/setup-python@v2

@@ -91,7 +91,7 @@ def run() -> None:
 
     mk_cmd(["g"] + base)
     mk_cmd(["gb"] + base)
-    # , "docs" https://github.com/svenevs/exhale/issues/195
+    mk_cmd(["docs"] + base)
     mk_cmd(["dist"] + base)
 
     # Things that run in CI for these projects.

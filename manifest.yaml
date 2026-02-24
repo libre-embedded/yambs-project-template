@@ -9,8 +9,6 @@ compiles:
   - name: local
     schemas:
       - config/schemas
-    configs:
-      - local/configs
 
 templates:
   - local/templates
